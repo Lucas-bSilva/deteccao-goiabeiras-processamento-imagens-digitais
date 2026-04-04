@@ -1,0 +1,15 @@
+{
+  "resize_factor": 1.0,
+  "use_gaussian_preprocess": true,
+  "gaussian_config": "configs/gaussian5.json",
+  "use_green_score": true,
+  "green_threshold_percentile": 70,
+  "use_sobel_validation": true,
+  "binary_open_size": 3,
+  "binary_open_iterations": 1,
+  "binary_close_size": 5,
+  "binary_close_iterations": 1,
+  "min_area": 120,
+  "max_area": 20000,
+  "draw_boxes": true
+}
