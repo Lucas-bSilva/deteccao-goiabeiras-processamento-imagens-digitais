@@ -42,41 +42,6 @@ def histogram_stretch(channel):
     return np.clip(stretched, 0, 255).astype(np.uint8)
 
 
-def sobel_postprocess(img):
-    """
-    Realiza o pós-processamento necessário para os filtros Sobel.
-
-    Justificativa:
-    - Operadores Sobel calculam gradientes de intensidade, que podem
-      gerar valores positivos e negativos.
-    - Para visualização da magnitude das bordas, é necessário remover
-      o sinal e ajustar os valores ao intervalo da imagem.
-
-    Etapas executadas:
-    1. Aplica valor absoluto ao resultado da correlação.
-    2. Aplica expansão de histograma em cada canal RGB.
-    3. Converte o resultado final para uint8.
-
-    Parâmetros:
-        img (np.ndarray): resultado da correlação Sobel em float32.
-
-    Retorno:
-        np.ndarray: imagem final pronta para exibição ou salvamento.
-    """
-
-    # Remove o sinal dos gradientes, preservando apenas a magnitude
-    img = np.abs(img.astype(np.float32))
-
-    # Inicializa a matriz de saída com o mesmo formato da imagem
-    result = np.zeros_like(img, dtype=np.uint8)
-
-    # Aplica expansão de histograma independentemente
-    # para cada canal da imagem RGB
-    for c in range(3):
-        result[:, :, c] = histogram_stretch(img[:, :, c])
-
-    return result
-
 
 def to_uint8_clip(img):
     """

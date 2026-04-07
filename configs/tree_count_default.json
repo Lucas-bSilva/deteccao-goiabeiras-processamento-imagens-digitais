@@ -4,7 +4,6 @@
   "gaussian_config": "configs/gaussian5.json",
   "use_green_score": true,
   "green_threshold_percentile": 70,
-  "use_sobel_validation": true,
   "binary_open_size": 3,
   "binary_open_iterations": 1,
   "binary_close_size": 5,

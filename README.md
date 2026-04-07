@@ -28,10 +28,9 @@ Realizar a detecção automática de copas de goiabeiras e estimar a quantidade 
 
 ##  Componentes Adicionados
 
-* `count_trees.py` → pipeline completo de detecção e contagem
+* `main.py` → pipeline completo de detecção e contagem
 * `configs/tree_count_default.json` → parâmetros do algoritmo
 * `configs/gaussian5.json` → filtro gaussiano
-* `configs/sobel_h.json` / `sobel_v.json` → operadores de Sobel
 
 ---
 
@@ -41,12 +40,11 @@ Realizar a detecção automática de copas de goiabeiras e estimar a quantidade 
 2. Redimensionamento (para otimização)
 3. Suavização Gaussiana (opcional)
 4. Cálculo do **Green Score** (realce da vegetação)
-5. Detecção de bordas (Sobel)
-6. Limiarização por percentil
-7. Operações morfológicas (abertura/fechamento)
-8. Rotulação de componentes conectados
-9. Filtragem por área
-10. Geração da contagem e visualização final
+5. Limiarização por percentil
+6. Operações morfológicas (abertura/fechamento)
+7. Rotulação de componentes conectados
+8. Filtragem por área
+9. Geração da contagem e visualização final
 
 ---
 
@@ -57,12 +55,10 @@ PDI_Goiabeiras/
 ├── atrous.py
 ├── main.py
 ├── utils.py
-├── count_trees.py
+├── main.py
 ├── configs/
 │   ├── tree_count_default.json
 │   ├── gaussian5.json
-│   ├── sobel_h.json
-│   └── sobel_v.json
 ├── drone_images/
 │   ├── area1.png
 │   ├── area2.png
@@ -88,10 +84,10 @@ pip install numpy pillow
 ###  Executar para cada imagem selecionada
 
 ```bash
-python count_trees.py -i drone_images/area1.png -c configs/tree_count_default.json -o results/trees/area1
-python count_trees.py -i drone_images/area2.png -c configs/tree_count_default.json -o results/trees/area2
-python count_trees.py -i drone_images/area3.png -c configs/tree_count_default.json -o results/trees/area3
-python count_trees.py -i drone_images/area4.png -c configs/tree_count_default.json -o results/trees/area4
+python main.py -i drone_images/area1.png -c configs/tree_count_default.json -o results/trees/area1
+python main.py -i drone_images/area2.png -c configs/tree_count_default.json -o results/trees/area2
+python main.py -i drone_images/area3.png -c configs/tree_count_default.json -o results/trees/area3
+python main.py -i drone_images/area4.png -c configs/tree_count_default.json -o results/trees/area4
 ```
 
 ---
@@ -102,7 +98,6 @@ Para cada execução, será criada uma pasta contendo:
 
 * `01_green_score.png` → mapa de vegetação
 * `02_smoothed.png` → imagem suavizada
-* `03_sobel_magnitude.png` → bordas detectadas
 * `04_final_mask.png` → segmentação final
 * `05_overlay_count.png` → **detecção com caixas (resultado final)**
 * `06_count_report.txt` → contagem estimada
