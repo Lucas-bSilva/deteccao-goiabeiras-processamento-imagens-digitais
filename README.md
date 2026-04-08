@@ -2,7 +2,7 @@
 
 Este projeto implementa um pipeline de **Processamento Digital de Imagens (PDI)** para detecção e **contagem estimada de pés de goiaba** a partir de imagens capturadas por drone.
 
-A solução reaproveita o motor de correlação dilatada (*à trous*) desenvolvido anteriormente e integra novas etapas de segmentação, filtragem e análise estrutural.
+A solução reaproveita o motor de correlação dilatada (*àtrous*) desenvolvido anteriormente e integra novas etapas de segmentação, filtragem e análise estrutural.
 
 ---
 
@@ -96,8 +96,9 @@ python main.py -i drone_images/area4.png -c configs/tree_count_default.json -o r
 
 Para cada execução, será criada uma pasta contendo:
 
-* `01_green_score.png` → mapa de vegetação
-* `02_smoothed.png` → imagem suavizada
+* `01_limiar.png.png` → limiarização
+* `02_green_score.png` → mapa de vegetação
+* `03_smoothed.png` → imagem suavizada
 * `04_final_mask.png` → segmentação final
 * `05_overlay_count.png` → **detecção com caixas (resultado final)**
 * `06_count_report.txt` → contagem estimada

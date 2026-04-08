@@ -193,8 +193,10 @@ def run_tree_count(input_path, output_dir, config_path):
     count_value = len(comps)
     overlay = draw_components(img_smooth, comps) if cfg.get("draw_boxes", True) else img_smooth.copy()
 
-    save_gray(os.path.join(output_dir, "01_green_score.png"), green_score)
-    save_rgb(os.path.join(output_dir, "02_smoothed.png"), img_smooth)
+
+    save_gray(os.path.join(output_dir, "01_limiar.png"), (vegetation_mask.astype(np.uint8) * 255))
+    save_gray(os.path.join(output_dir, "02_green_score.png"), green_score)
+    save_rgb(os.path.join(output_dir, "03_smoothed.png"), img_smooth)
     save_gray(os.path.join(output_dir, "04_final_mask.png"), (refined_mask.astype(np.uint8) * 255))
     save_rgb(os.path.join(output_dir, "05_overlay_count.png"), overlay)
     write_report(os.path.join(output_dir, "06_count_report.txt"), count_value, comps)
